@@ -45,11 +45,20 @@ const serverHandle = (req, res) => {
         req.body = postData;
         console.log('req.body[POST]...', req.body);
         // 处理 blog 路由
-        const blogData = blogRouterHandle(req, res);
-        if(blogData) {
-            res.end(
-                JSON.stringify(blogData)
-            )
+        // const blogData = blogRouterHandle(req, res);
+        // if(blogData) {
+        //     res.end(
+        //         JSON.stringify(blogData)
+        //     )
+        //     return;
+        // }
+        const blogResult = blogRouterHandle(req, res);
+        if(blogResult){
+            blogResult.then(blogData => {
+                res.end(
+                    JSON.stringify(blogData)
+                )
+            })
             return;
         }
 

@@ -1,22 +1,32 @@
+const { exec } = require('../db/mysql.js');
 // 获取博客列表
 const getList = (author, keyword) => {
     // 返回数据（格式必须正确）
-    return [
-        {
-            "id": 1,
-            "title": "标题A",
-            "content": "内容A",
-            "createTime": 1558964316930,
-            "author": 'songzk'
-        },
-        {
-            "id": 2,
-            "title": "标题B",
-            "content": "内容B",
-            "createTime": 1558964359066,
-            "author": 'szk'
-        }
-    ]
+    let sql = `select * from blogs where 1=1 `;
+    if(author){
+        sql += `and author='${author}' `;
+    }
+    if(keyword){
+        sql += `and title like '%${keyword}%' `
+    }
+    sql += `order by createtime desc;`;
+    return exec(sql);
+    // return [
+    //     {
+    //         "id": 1,
+    //         "title": "标题A",
+    //         "content": "内容A",
+    //         "createTime": 1558964316930,
+    //         "author": 'songzk'
+    //     },
+    //     {
+    //         "id": 2,
+    //         "title": "标题B",
+    //         "content": "内容B",
+    //         "createTime": 1558964359066,
+    //         "author": 'szk'
+    //     }
+    // ]
 }
 
 // 获取博客详情

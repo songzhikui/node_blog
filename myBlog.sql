@@ -3,7 +3,7 @@ use myblog;
 -- show tables;
 
 -- 增
--- insert into users (username, `password`, realname) values ('szk', '123', '宋志魁szk');
+-- insert into users (username, `password`, realname) values ('szk123', '456', '宋志魁szk123');
 
 -- 查
 -- select * from users;
